@@ -5,6 +5,7 @@
 require_relative 'player'
 
 class ConnectFour
+  attr_reader :board
 
   def initialize
     @board = Array.new(6) { Array.new(7, '_') }
@@ -110,20 +111,40 @@ class ConnectFour
   end
 
   def place_token(column_number, token)
-    # If 1 chosen place token in lowest unfilled slot i.e. @board[5][0]
-    # place at @board[1][column_number - 1]
+    if filled?(@board[0][column_number - 1])
+      'Error, please choose a column that is not full already'
+    elsif filled?(@board[1][column_number - 1])
+      @board[0][column_number - 1] = token
+    elsif filled?(@board[2][column_number - 1])
+      @board[1][column_number - 1] = token
+    elsif filled?(@board[3][column_number - 1])
+      @board[2][column_number - 1] = token
+    elsif filled?(@board[4][column_number - 1])
+      @board[3][column_number - 1] = token
+    elsif filled?(@board[5][column_number - 1])
+      @board[4][column_number - 1] = token
+    else
+      @board[5][column_number - 1] = token
+    end
+  end
 
-    # If @board[1][0] filled?
-    #   place token @board[0][0]
-    # Elseif @board[2][0] filled?
-    #   place token @board[1][0]
-    # Elseif @board[3][0] filled?
-    #   place token @board[2][0]
-    # Elseif @board[4][0] filled?
-    #   place token @board[3][0]
-    # Elseif @board[5][0] filled?
-    #   place token @board[4][0]
-    # Else
-    #   place token @board[5][0]
+  def filled?(co_ord)
+    return true unless co_ord == '_'
   end
 end
+
+game = ConnectFour.new
+
+puts game.display
+
+game.place_token(1, 'X')
+
+puts game.display
+
+game.place_token(1, 'X')
+
+puts game.display
+
+game.place_token(1, 'X')
+
+puts game.display
