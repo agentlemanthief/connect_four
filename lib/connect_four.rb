@@ -155,7 +155,7 @@ class ConnectFour
 
   def play_game(with_intro: true)
     intro if with_intro
-    create_players
+    create_players if @player_number_one.nil?
     display
     game_loop
     declare_winner
@@ -163,10 +163,10 @@ class ConnectFour
   end
 
   def create_players
-    @player_number_one = Player.new(1) if @player_number_one.nil?
+    @player_number_one = Player.new(1)
     @player_number_one.ask_name
     @player_number_one.ask_token
-    @player_number_two = Player.new(2) if @player_number_two.nil?
+    @player_number_two = Player.new(2)
     @player_number_two.ask_name
     @player_number_two.ask_token
   end
