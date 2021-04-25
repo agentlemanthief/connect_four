@@ -1,5 +1,7 @@
 # Frozen_string_literal: true
 
+# rubocop:disable Metrics/BlockLength
+
 require_relative '../lib/connect_four'
 
 describe 'ConnectFour' do
@@ -38,7 +40,7 @@ describe 'ConnectFour' do
       token = 'X'
       board_no_win_no_draw[5][0] = token
       board_no_win_no_draw[4][0] = token
-      connect_four.instance_variable_set(:@board, board_no_win_no_draw )
+      connect_four.instance_variable_set(:@board, board_no_win_no_draw)
       expect(connect_four.game_draw?).to be_falsey
     end
   end
@@ -275,3 +277,4 @@ describe 'ConnectFour' do
     end
   end
 end
+# rubocop:enable Metrics/BlockLength

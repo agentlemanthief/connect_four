@@ -4,10 +4,12 @@
 class Player
   attr_reader :name, :player_number, :token, :score, :rounds_won
 
-  def initialize(player_number)
+  @@used_tokens = []
+
+  def initialize(player_number, name = ask_name, token = ask_token)
     @player_number = player_number
-    @name = ask_name
-    @token = ask_token
+    @name = name
+    @token = token
     @score = 0
     @rounds_won = 0
   end
@@ -23,14 +25,15 @@ class Player
     puts '2: O'
     choice = gets.chomp
     until validate?(choice)
-      puts 'Please choose either 1 or 2'
+      puts "Please choose either 1 or 2 and ensure your choice hasn't already been chosen"
       choice = gets.chomp
     end
+    @@used_tokens.push(choice)
     @token = choice == '1' ? 'X' : 'O'
   end
 
   def validate?(input)
-    return true if input.match?(/^[12]$/)
+    return true if input.match?(/^[12]$/) && !@@used_tokens.include?(input)
   end
 
   def add_score_point
