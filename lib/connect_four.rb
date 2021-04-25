@@ -198,14 +198,13 @@ class ConnectFour
   end
 
   def overall_winner
-    winner = if @player_number_one.rounds_won > @player_number_two.rounds_won
-               @player_number_one.name
-             elsif @player_number_one.rounds_won < @player_number_two.rounds_won
-               @player_number_two.name
-             else
-               return puts "It's a draw!"
-             end
-    puts "The overall winner is #{winner}"
+    if @player_number_one.rounds_won > @player_number_two.rounds_won
+      puts "The overall winner is #{@player_number_one.name}"
+    elsif @player_number_one.rounds_won < @player_number_two.rounds_won
+      puts "The overall winner is #{@player_number_two.name}"
+    else
+      puts "It's a draw!"
+    end
   end
 
   def play_again
