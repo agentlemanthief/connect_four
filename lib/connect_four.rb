@@ -164,7 +164,11 @@ class ConnectFour
 
   def create_players
     @player_number_one = Player.new(1) if @player_number_one.nil?
+    @player_number_one.ask_name
+    @player_number_one.ask_token
     @player_number_two = Player.new(2) if @player_number_two.nil?
+    @player_number_two.ask_name
+    @player_number_two.ask_token
   end
 
   def player_turn(player)

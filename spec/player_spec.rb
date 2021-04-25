@@ -5,7 +5,7 @@
 require_relative '../lib/player'
 
 describe 'Player' do
-  subject(:player) { Player.new(1, nil, nil) }
+  subject(:player) { Player.new(1) }
 
   describe '#ask_name' do
     it 'Updates @name variable' do
@@ -34,18 +34,18 @@ describe 'Player' do
   end
 
   describe '#ask_token' do
-    it "Updates @token variable to 'X'" do
+    it "Updates @token variable to '\u2620'" do
       input = '1'
       allow(player).to receive(:gets).and_return(input)
       player.ask_token
-      expect(player.token).to eq('X')
+      expect(player.token).to eq("\u2620")
     end
 
-    it "Updates @token variable to 'O'" do
+    it "Updates @token variable to '\u262E'" do
       input = '2'
       allow(player).to receive(:gets).and_return(input)
       player.ask_token
-      expect(player.token).to eq('O')
+      expect(player.token).to eq("\u262E")
     end
   end
 

@@ -6,10 +6,10 @@ class Player
 
   @@used_tokens = []
 
-  def initialize(player_number, name = ask_name, token = ask_token)
+  def initialize(player_number = 1)
     @player_number = player_number
-    @name = name
-    @token = token
+    @name = nil
+    @token = nil
     @score = 0
     @rounds_won = 0
   end
@@ -21,15 +21,15 @@ class Player
 
   def ask_token
     puts 'Now choose a token to play with by choosing a number '
-    puts '1: X'
-    puts '2: O'
+    puts "1: \u2620"
+    puts "2: \u262E"
     choice = gets.chomp
     until validate?(choice)
       puts "Please choose either 1 or 2 and ensure your choice hasn't already been chosen"
       choice = gets.chomp
     end
     @@used_tokens.push(choice)
-    @token = choice == '1' ? 'X' : 'O'
+    @token = choice == '1' ? "\u2620" : "\u262E"
   end
 
   def validate?(input)
